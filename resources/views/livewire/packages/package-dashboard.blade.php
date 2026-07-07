@@ -16,17 +16,24 @@
         
         <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-6 gap-4 px-2">
             
-            <div class="flex flex-wrap items-center gap-2">
-                <button class="px-5 py-2 text-sm font-medium text-white bg-[#071d49] rounded-full shadow-sm">
+         <div class="flex flex-wrap items-center gap-2">
+                <button wire:click="$set('statusFilter', 'all')" 
+                    class="px-5 py-2 text-sm font-medium rounded-full shadow-sm transition-colors {{ $statusFilter === 'all' ? 'text-white bg-[#071d49]' : 'text-[#63666a] bg-gray-100 hover:bg-gray-200' }}">
                     Todos
                 </button>
-                <button class="px-5 py-2 text-sm font-medium text-[#63666a] bg-gray-100 hover:bg-gray-200 rounded-full transition-colors">
+                
+                <button wire:click="$set('statusFilter', 'in_transit')" 
+                    class="px-5 py-2 text-sm font-medium rounded-full shadow-sm transition-colors {{ $statusFilter === 'in_transit' ? 'text-white bg-[#071d49]' : 'text-[#63666a] bg-gray-100 hover:bg-gray-200' }}">
                     En Tránsito
                 </button>
-                <button class="px-5 py-2 text-sm font-medium text-[#63666a] bg-gray-100 hover:bg-gray-200 rounded-full transition-colors">
+                
+                <button wire:click="$set('statusFilter', 'delivered')" 
+                    class="px-5 py-2 text-sm font-medium rounded-full shadow-sm transition-colors {{ $statusFilter === 'delivered' ? 'text-white bg-[#071d49]' : 'text-[#63666a] bg-gray-100 hover:bg-gray-200' }}">
                     Entregado
                 </button>
-                <button class="px-5 py-2 text-sm font-medium text-[#63666a] bg-gray-100 hover:bg-gray-200 rounded-full transition-colors">
+                
+                <button wire:click="$set('statusFilter', 'pending')" 
+                    class="px-5 py-2 text-sm font-medium rounded-full shadow-sm transition-colors {{ $statusFilter === 'pending' ? 'text-white bg-[#071d49]' : 'text-[#63666a] bg-gray-100 hover:bg-gray-200' }}">
                     Pendiente
                 </button>
             </div>
