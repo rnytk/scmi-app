@@ -55,7 +55,7 @@ public function updatedDestinationAgencyId($value)
         ]);
 
        
-        Package::create([
+        $package =Package::create([
             'package_type_id' => $this->package_type_id,
             'description' => $this->description,
             'origin_agency_id' => $this->origin_agency_id,
@@ -67,8 +67,7 @@ public function updatedDestinationAgencyId($value)
             'status' => PackageStatus::Created,
         ]);
 
-        session()->flash('message', 'Paquete registrado exitosamente.');
-        return redirect()->route('packages.index');
+        return redirect()->route('packages.show', $package->id);
     }
 
     public function render()

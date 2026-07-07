@@ -53,7 +53,7 @@ class PackageDashboard extends Component
             });
             
         } else {
-            // Envíos Realizados: Paquetes creados por mí
+            // Envíos Realizados: Paquetes creados por la persona logeada
             $query->where('sender_id', $userId);
         }
 

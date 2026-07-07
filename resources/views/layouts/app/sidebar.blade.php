@@ -5,7 +5,7 @@
     @include('partials.head')
 </head>
 
-<body class="min-h-screen bg-white dark:bg-zinc-800">
+<body class="min-h-screen bg-gradient-to-br from-[#f0f4f8] to-[#e6f0d8]/50 dark:bg-zinc-800">
     <flux:sidebar sticky collapsible="mobile"
         class="bg-white border border-zinc-50 m-0  shadow-2xl lg:m-5 rounded-xl dark:border-zinc-800 dark:bg-zinc-900">
 
