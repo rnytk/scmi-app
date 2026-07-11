@@ -1,13 +1,11 @@
-<div class="min-h-screen bg-gray-50 py-8 px-4 sm:px-6">
+<div class="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 relative">
     <div class="max-w-md mx-auto">
         
-        <!-- Encabezado -->
         <div class="text-center mb-8">
             <h1 class="text-2xl font-black text-[#071d49]">Rastreo de Envío</h1>
             <p class="text-gray-500 text-sm mt-1">Sistema de Mensajería Interna</p>
         </div>
 
-        <!-- Tarjeta de Estado -->
         <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden mb-6">
             
             <div class="bg-[#071d49] p-6 text-center text-white">
@@ -49,7 +47,6 @@
             </div>
         </div>
 
-        <!--  Aquí  se integraremos la línea de tiempo (Historial) -->
         <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 text-center">
             <p class="text-sm text-gray-500 mb-4">Escaneado el {{ now()->format('d M, Y h:i A') }}</p>
             
@@ -59,4 +56,30 @@
         </div>
 
     </div>
+
+    @auth
+        @if($package->status->value !== 'delivered' && $package->current_custodian_id !== auth()->id())
+            <div class="fixed bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black via-black/95 to-transparent z-50">
+                
+                <flux:button 
+                    wire:click="takeCustody"
+                    wire:loading.attr="disabled"
+                    class="w-full bg-[#84bd00] hover:bg-[#95d600] text-black font-bold text-lg py-5 rounded-2xl shadow-[0_0_25px_rgba(132,189,0,0.3)] transition-all flex justify-center items-center"
+                >
+                    <span wire:loading.remove wire:target="takeCustody" class="flex items-center gap-2">
+                        <flux:icon.qr-code class="w-6 h-6" />
+                        Aceptar Custodia
+                    </span>
+                    
+                    <span wire:loading wire:target="takeCustody" class="flex items-center gap-2">
+                        <flux:icon.arrow-path class="w-6 h-6 animate-spin" />
+                        Validando...
+                    </span>
+                </flux:button>
+                
+            </div>
+            
+            <div class="h-32 w-full"></div>
+        @endif
+    @endauth
 </div>

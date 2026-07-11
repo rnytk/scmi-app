@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class CustodyHistory extends Model
 {
+
+protected $fillable = [
+        'package_id',
+        'handed_over_by_id',
+        'received_by_id',
+        'resulting_status',
+        'scanned_at',
+    ];
+
     protected $guarded = ['id'];
 
     protected $casts = [
